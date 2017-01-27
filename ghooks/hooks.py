@@ -1,7 +1,7 @@
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--port', '-p')
+parser.add_argument('--port', '-p', type=int)
 
 args = parser.parse_args()
 
