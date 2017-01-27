@@ -16,3 +16,10 @@ Getting started
     ghooks.run()
 
 To run the webhook, ``python3 filename.py -p 5000``
+
+Installation
+------------
+
+.. code:: bash
+
+    pip install ghooks
