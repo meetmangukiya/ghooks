@@ -14,6 +14,7 @@ EVENTS = {
     "milestone": [],
     "organization": [],
     "page_build": [],
+    "ping": [],
     "project_column": [],
     "project": [],
     "public": [],
