@@ -2,6 +2,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--port', '-p', type=int)
+parser.add_argument('--end-point', '--end', '-e')
 
 args = parser.parse_args()
 
@@ -14,7 +15,7 @@ from flask import request
 
 app = Flask(__name__)
 
-@app.route('/ghooks')
+@app.route('/' + args.end_point if args.end_point else 'ghooks')
 def hook(methods=["POST"]):
     gh_event = request.headers.get('X-GitHub-Event')
     gh_signature = request.headers.get('X-Hub-Signature')
