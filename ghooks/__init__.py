@@ -44,4 +44,4 @@ def call_handlers(data, event):
     for handlers in EVENTS[event]:
         handlers(data)
 
-from ghooks.hooks import run
+from ghooks.hooks import app
