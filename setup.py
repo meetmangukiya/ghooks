@@ -7,7 +7,7 @@ with open("requirements.txt") as f:
     requirements = f.read()
 
 setup(name = 'ghooks',
-    version = '0.1',
+    version = '0.1.1',
     description = "GitHub hooks made simpler to handle!",
     long_description = long_description,
     author="Meet Mangukiya",
