@@ -1,10 +1,14 @@
 import argparse
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--port', '-p', type=int)
-parser.add_argument('--end-point', '--end', '-e')
+# Only do argument parsing if run directly, otherwise gunicorn doesn't work
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--port', '-p', type=int)
+    parser.add_argument('--end-point', '--end', '-e')
 
-args = parser.parse_args()
+    args = parser.parse_args()
+
+args = {}
 
 import os
 
@@ -15,8 +19,8 @@ from flask import request
 
 app = Flask(__name__)
 
-@app.route('/' + args.end_point if args.end_point else 'ghooks')
-def hook(methods=["POST"]):
+@app.route('/' + (args.get("end_point") if args.get("end_point") else 'ghooks'), methods=["POST"])
+def hook():
     gh_event = request.headers.get('X-GitHub-Event')
     gh_signature = request.headers.get('X-Hub-Signature')
     gh_id = request.headers.get('X-GitHub-Delivery')
@@ -25,8 +29,6 @@ def hook(methods=["POST"]):
 
     call_handlers(data, gh_event)
 
-def run():
-    app.run(debug=True, port=args.port if args.port else 8000)
-
 if __name__ == "__main__":
-    main()
+    app.run(degug=True, host='127.0.0.1', port=args.get('port') if
+                                               args.get('port') else 8080)
